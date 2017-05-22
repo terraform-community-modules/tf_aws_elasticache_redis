@@ -17,12 +17,12 @@ resource "aws_elasticache_replication_group" "redis" {
 }
 
 resource "aws_elasticache_parameter_group" "redis_parameter_group" {
-  name        = "tf-redis-${var.name}-${data.aws_vpc.vpc.tags["Name"]}"
+  name        = "tf-redis-${var.name}-${replace(format("%.100s", lower(replace("${data.aws_vpc.vpc.tags["Name"]}", "_", "-"))), "/\\s/", "-")}"
   description = "Terraform-managed ElastiCache parameter group for ${var.name}-${data.aws_vpc.vpc.tags["Name"]}"
-  family      = "redis${replace(var.redis_version, "/\\.[\\d+]$/","")}" # Strip the patch version from redis_version var
+  family      = "redis${replace(var.redis_version, "/\\.[\\d]+$/","")}" # Strip the patch version from redis_version var
 }
 
 resource "aws_elasticache_subnet_group" "redis_subnet_group" {
-  name       = "tf-redis-${var.name}-${data.aws_vpc.vpc.tags["Name"]}"
+  name       = "tf-redis-${var.name}-${replace(format("%.100s", lower(replace("${data.aws_vpc.vpc.tags["Name"]}", "_", "-"))), "/\\s/", "-")}"
   subnet_ids = ["${var.subnets}"]
 }
