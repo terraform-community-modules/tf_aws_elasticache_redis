@@ -67,3 +67,9 @@ variable "redis_version" {
 variable "vpc_id" {
   description = "VPC ID"
 }
+
+variable "redis_sg_count" {
+  type = "string"
+  default = "1"
+}
+
