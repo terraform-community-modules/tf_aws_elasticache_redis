@@ -3,7 +3,7 @@ data "aws_vpc" "vpc" {
 }
 
 resource "aws_elasticache_replication_group" "redis" {
-  replication_group_id          = "${format("%.20s","${var.name}-${var.env}")}"
+  replication_group_id          = "${replace(format("%.20s","${var.name}-${var.env}"), "/\\W+$/", "")}"
   replication_group_description = "Terraform-managed ElastiCache replication group for ${var.name}-${data.aws_vpc.vpc.tags["Name"]}"
   number_cache_clusters         = "${var.redis_clusters}"
   node_type                     = "${var.redis_node_type}"
