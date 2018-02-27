@@ -10,10 +10,6 @@ output "redis_subnet_group_name" {
   value = "${aws_elasticache_subnet_group.redis_subnet_group.name}"
 }
 
-output "redis_subnet_group_ids" {
-  value = "${aws_elasticache_subnet_group.redis_subnet_group.subnet_ids}"
-}
-
 output "id" {
   value = "${aws_elasticache_replication_group.redis.id}"
 }
