@@ -52,7 +52,6 @@ Outputs
 - `id`
 - `port`
 - `endpoint`
-- `configuration_endpoint_address`
 
 
 Authors
