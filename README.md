@@ -32,7 +32,7 @@ Usage
 
 ```hcl
 module "redis" {
-  source         = "github.com/terraform-community-modules/tf_aws_elasticache_redis?ref=1.0.0"
+  source         = "github.com/terraform-community-modules/tf_aws_elasticache_redis?ref=v1.2.0"
   env            = "${var.env}"
   name           = "thtest"
   redis_clusters = "2"
