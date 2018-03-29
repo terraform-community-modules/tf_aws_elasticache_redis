@@ -60,10 +60,16 @@ variable "subnets" {
 
 # might want a map
 variable "redis_version" {
-  description = "Redis version to use, defaults to 3.2.4"
-  default = "3.2.4"
+  description = "Redis version to use, defaults to 3.2.10"
+  default = "3.2.10"
 }
 
 variable "vpc_id" {
   description = "VPC ID"
+}
+
+variable "redis_parameters" {
+  type = "list"
+  description = "additional parameters modifyed in parameter group"
+  default = []
 }

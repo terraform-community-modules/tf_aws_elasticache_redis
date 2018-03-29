@@ -25,20 +25,47 @@ This module
 - `redis_failover` - "Defaults to false , for failover to work, node type must larger then t2, and redis_cluster must be greater then 1"
 - `redis_node_type` - "Instance type to use for creating the Redis cache clusters Defaults to cache.m3.medium"
 - `redis_port` - "Defaults to 6379"
-- `redis_version` - "Redis version to use, defaults to 3.2.4"
+- `redis_version` - "Redis version to use, defaults to 3.2.10"
+- `redis_parameters` - "The additional parameters modifyed in parameter group"
 
 Usage
 -----
 
 ```hcl
 module "redis" {
-  source         = "github.com/terraform-community-modules/tf_aws_elasticache_redis?ref=1.0.0"
+  source         = "github.com/terraform-community-modules/tf_aws_elasticache_redis?ref=1.2.0"
   env            = "${var.env}"
   name           = "thtest"
   redis_clusters = "2"
   redis_failover = "true"
   subnets        = "${module.vpc.database_subnets}"
   vpc_id         = "${module.vpc.vpc_id}"
+}
+```
+
+Usage with redis_parameters
+-----
+
+```hcl
+variable "redis_parameters" {
+  description = "additional parameters"
+  default = [{
+    name  = "min-slaves-max-lag"
+    value = "5"
+  },{
+    name  = "min-slaves-to-write"
+    value = "1"
+  },{
+    name  = "databases"
+    value = "32"
+  }]
+}
+
+module "redis" {
+  source           = "github.com/terraform-community-modules/tf_aws_elasticache_redis?ref=1.2.0"
+  ...
+  redis_parameters = "${var.redis_parameters}"
+  ...
 }
 ```
 
