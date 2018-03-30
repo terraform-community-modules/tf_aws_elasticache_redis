@@ -27,6 +27,9 @@ This module
 - `redis_port` - "Defaults to 6379"
 - `redis_version` - "Redis version to use, defaults to 3.2.10"
 - `redis_parameters` - "The additional parameters modifyed in parameter group"
+- `redis_maintenance_window` - "Specifies the weekly time range for when maintenance on the cache cluster is performed. The format is ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). The minimum maintenance window is a 60 minute period"
+- `redis_snapshot_window` - "The daily time range (in UTC) during which ElastiCache will begin taking a daily snapshot of your cache cluster. The minimum snapshot window is a 60 minute period"
+- `redis_snapshot_retention_limit` - "The number of days for which ElastiCache will retain automatic cache cluster snapshots before deleting them. For example, if you set SnapshotRetentionLimit to 5, then a snapshot that was taken today will be retained for 5 days before being deleted. If the value of SnapshotRetentionLimit is set to zero (0), backups are turned off. Please note that setting a snapshot_retention_limit is not supported on cache.t1.micro or cache.t2.* cache nodes"
 
 Usage
 -----
