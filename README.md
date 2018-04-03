@@ -36,7 +36,7 @@ Usage
 
 ```hcl
 module "redis" {
-  source         = "github.com/terraform-community-modules/tf_aws_elasticache_redis?ref=1.2.0"
+  source         = "github.com/terraform-community-modules/tf_aws_elasticache_redis?ref=v1.3.0"
   env            = "${var.env}"
   name           = "thtest"
   redis_clusters = "2"
@@ -65,7 +65,7 @@ variable "redis_parameters" {
 }
 
 module "redis" {
-  source           = "github.com/terraform-community-modules/tf_aws_elasticache_redis?ref=1.2.0"
+  source           = "github.com/terraform-community-modules/tf_aws_elasticache_redis?ref=v1.3.0"
   ...
   redis_parameters = "${var.redis_parameters}"
   ...
