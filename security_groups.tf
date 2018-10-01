@@ -1,10 +1,8 @@
 resource "aws_security_group" "redis_security_group" {
-  name        = "${format("%.255s", "tf-sg-ec-${var.name}-${var.env}-${data.aws_vpc.vpc.tags["Name"]}")}"
-  description = "Terraform-managed ElastiCache security group for ${var.name}-${var.env}-${data.aws_vpc.vpc.tags["Name"]}"
+  name        = "${env}-elasticache-terraform"
   vpc_id      = "${data.aws_vpc.vpc.id}"
-
   tags {
-    Name = "tf-sg-ec-${var.name}-${var.env}-${data.aws_vpc.vpc.tags["Name"]}"
+    Name      = "${env}-elasticache-terraform"
   }
 }
 
@@ -19,10 +17,10 @@ resource "aws_security_group_rule" "redis_ingress" {
 }
 
 resource "aws_security_group_rule" "redis_networks_ingress" {
-  type                     = "ingress"
-  from_port                = "${var.redis_port}"
-  to_port                  = "${var.redis_port}"
-  protocol                 = "tcp"
+  type                     =  "ingress"
+  from_port                =  "${var.redis_port}"
+  to_port                  =  "${var.redis_port}"
+  protocol                 =  "tcp"
   cidr_blocks              = ["${var.allowed_cidr}"]
-  security_group_id        = "${aws_security_group.redis_security_group.id}"
+  security_group_id        =  "${aws_security_group.redis_security_group.id}"
 }
