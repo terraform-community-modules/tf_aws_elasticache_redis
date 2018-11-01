@@ -2,6 +2,7 @@
 # Stubbing this out, we should have conversation about monitoring before we make this the default behavior
 # For this module 
 /*
+
 resource "aws_cloudwatch_metric_alarm" "cache_cpu" {
   count = "${var.redis_clusters}"
 
@@ -44,3 +45,4 @@ resource "aws_cloudwatch_metric_alarm" "cache_memory" {
   alarm_actions = ["${var.alarm_actions}"]
 }
 */
+

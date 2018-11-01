@@ -38,6 +38,7 @@ variable "env" {
 variable "name" {
   description = "Name for the Redis replication group i.e. UserObject"
 }
+
 variable "redis_clusters" {
   description = "Number of Redis cache clusters (nodes) to create"
 }
@@ -51,7 +52,9 @@ variable "redis_node_type" {
   default     = "cache.m3.medium"
 }
 
-variable "redis_port" { default = 6379 }
+variable "redis_port" {
+  default = 6379
+}
 
 variable "subnets" {
   type        = "list"
@@ -69,7 +72,7 @@ variable "vpc_id" {
 }
 
 variable "redis_parameters" {
-  type = "list"
+  type        = "list"
   description = "additional parameters modifyed in parameter group"
   default     = []
 }

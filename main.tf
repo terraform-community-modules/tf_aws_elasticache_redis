@@ -20,13 +20,15 @@ resource "aws_elasticache_replication_group" "redis" {
 }
 
 resource "aws_elasticache_parameter_group" "redis_parameter_group" {
-  name = "${replace(format("%.255s", lower(replace("tf-redis-${var.name}-${var.env}-${data.aws_vpc.vpc.tags["Name"]}", "_", "-"))), "/\\s/", "-")}"
+  name        = "${replace(format("%.255s", lower(replace("tf-redis-${var.name}-${var.env}-${data.aws_vpc.vpc.tags["Name"]}", "_", "-"))), "/\\s/", "-")}"
   description = "Terraform-managed ElastiCache parameter group for ${var.name}-${var.env}-${data.aws_vpc.vpc.tags["Name"]}"
-  family      = "redis${replace(var.redis_version, "/\\.[\\d]+$/","")}" # Strip the patch version from redis_version var
+
+  # Strip the patch version from redis_version var
+  family    = "redis${replace(var.redis_version, "/\\.[\\d]+$/","")}"
   parameter = "${var.redis_parameters}"
 }
 
 resource "aws_elasticache_subnet_group" "redis_subnet_group" {
-  name = "${replace(format("%.255s", lower(replace("tf-redis-${var.name}-${var.env}-${data.aws_vpc.vpc.tags["Name"]}", "_", "-"))), "/\\s/", "-")}"
+  name       = "${replace(format("%.255s", lower(replace("tf-redis-${var.name}-${var.env}-${data.aws_vpc.vpc.tags["Name"]}", "_", "-"))), "/\\s/", "-")}"
   subnet_ids = ["${var.subnets}"]
 }
