@@ -17,6 +17,7 @@ resource "aws_elasticache_replication_group" "redis" {
   maintenance_window            = "${var.redis_maintenance_window}"
   snapshot_window               = "${var.redis_snapshot_window}"
   snapshot_retention_limit      = "${var.redis_snapshot_retention_limit}"
+  tags                          = "${merge(map("Name","tf-elasticache-${var.name}-${data.aws_vpc.vpc.tags["Name"]}"), var.tags)}"
 }
 
 resource "aws_elasticache_parameter_group" "redis_parameter_group" {
