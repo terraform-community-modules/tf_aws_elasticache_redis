@@ -73,12 +73,12 @@ variable "vpc_id" {
 
 variable "at_rest_encryption_enabled" {
   description = "At rest encryption enabled"
-  default = "true"
+  default = "false"
 }
 
 variable "transit_encryption_enabled" {
   description = "Transit encryption enabled"
-  default = "true"
+  default = "false"
 }
 
 variable "redis_parameters" {
