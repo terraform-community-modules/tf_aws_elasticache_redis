@@ -93,6 +93,6 @@ variable "redis_snapshot_retention_limit" {
 }
 
 variable "tags" {
-  description = "tags"
+  description = "Tags for redis nodes"
   default     = {}
 }
