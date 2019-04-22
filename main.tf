@@ -3,6 +3,7 @@ data "aws_vpc" "vpc" {
 }
 
 resource "aws_elasticache_replication_group" "redis" {
+  count                         = "${var.redis_auth_token == "" ? 1 : 0}"
   replication_group_id          = "${format("%.20s","${var.name}-${var.env}")}"
   replication_group_description = "Terraform-managed ElastiCache replication group for ${var.name}-${var.env}-${data.aws_vpc.vpc.tags["Name"]}"
   number_cache_clusters         = "${var.redis_clusters}"
@@ -17,6 +18,28 @@ resource "aws_elasticache_replication_group" "redis" {
   maintenance_window            = "${var.redis_maintenance_window}"
   snapshot_window               = "${var.redis_snapshot_window}"
   snapshot_retention_limit      = "${var.redis_snapshot_retention_limit}"
+  transit_encryption_enabled    = "${var.transit_encryption_enabled}"
+  tags                          = "${merge(map("Name", format("tf-elasticache-%s-%s", var.name, lookup(data.aws_vpc.vpc.tags,"Name",""))), var.tags)}"
+}
+
+resource "aws_elasticache_replication_group" "redis_auth" {
+  count                         = "${var.redis_auth_token != "" ? 1 : 0}"
+  replication_group_id          = "${format("%.20s","${var.name}-${var.env}")}"
+  replication_group_description = "Terraform-managed ElastiCache replication group for ${var.name}-${var.env}-${data.aws_vpc.vpc.tags["Name"]}"
+  number_cache_clusters         = "${var.redis_clusters}"
+  node_type                     = "${var.redis_node_type}"
+  automatic_failover_enabled    = "${var.redis_failover}"
+  engine_version                = "${var.redis_version}"
+  port                          = "${var.redis_port}"
+  parameter_group_name          = "${aws_elasticache_parameter_group.redis_parameter_group.id}"
+  subnet_group_name             = "${aws_elasticache_subnet_group.redis_subnet_group.id}"
+  security_group_ids            = ["${aws_security_group.redis_security_group.id}"]
+  apply_immediately             = "${var.apply_immediately}"
+  maintenance_window            = "${var.redis_maintenance_window}"
+  snapshot_window               = "${var.redis_snapshot_window}"
+  snapshot_retention_limit      = "${var.redis_snapshot_retention_limit}"
+  transit_encryption_enabled    = true
+  auth_token                    = "${var.redis_auth_token}"
   tags                          = "${merge(map("Name", format("tf-elasticache-%s-%s", var.name, lookup(data.aws_vpc.vpc.tags,"Name",""))), var.tags)}"
 }
 

@@ -11,7 +11,7 @@ output "redis_subnet_group_name" {
 }
 
 output "id" {
-  value = "${aws_elasticache_replication_group.redis.id}"
+  value = "${var.redis_auth_token != "" ? join("", aws_elasticache_replication_group.redis_auth.*.id) : join("", aws_elasticache_replication_group.redis.*.id)}"
 }
 
 output "port" {
@@ -19,5 +19,5 @@ output "port" {
 }
 
 output "endpoint" {
-  value = "${aws_elasticache_replication_group.redis.primary_endpoint_address}"
+  value = "${var.redis_auth_token != "" ? join("", aws_elasticache_replication_group.redis_auth.*.primary_endpoint_address) : join("", aws_elasticache_replication_group.redis.*.primary_endpoint_address)}"
 }

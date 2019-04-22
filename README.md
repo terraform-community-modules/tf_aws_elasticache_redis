@@ -56,6 +56,7 @@ module "redis" {
 | apply\_immediately | Specifies whether any modifications are applied immediately, or during the next maintenance window. Default is false. | string | `"false"` | no |
 | env | env to deploy into, should typically dev/staging/prod | string | n/a | yes |
 | name | Name for the Redis replication group i.e. UserObject | string | n/a | yes |
+| redis\_auth\_token | The password used to access a password protected server. Can be specified only if transit_encryption_enabled = true | string | `` | no |
 | redis\_clusters | Number of Redis cache clusters (nodes) to create | string | n/a | yes |
 | redis\_failover |  | string | `"false"` | no |
 | redis\_maintenance\_window | Specifies the weekly time range for when maintenance on the cache cluster is performed. The format is ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). The minimum maintenance window is a 60 minute period | string | `"fri:08:00-fri:09:00"` | no |
@@ -67,6 +68,7 @@ module "redis" {
 | redis\_version | Redis version to use, defaults to 3.2.10 | string | `"3.2.10"` | no |
 | subnets | List of VPC Subnet IDs for the cache subnet group | list | n/a | yes |
 | tags | Tags for redis nodes | map | `{}` | no |
+| transit\_encryption\_enabled | Whether to enable encryption in transit. Requires 3.2.6 or >=4.0 redis_version | string | `false` | no |
 | vpc\_id | VPC ID | string | n/a | yes |
 
 ## Outputs

@@ -92,6 +92,16 @@ variable "redis_snapshot_retention_limit" {
   default     = 0
 }
 
+variable "transit_encryption_enabled" {
+  description = "Whether to enable encryption in transit. Requires 3.2.6 or >=4.0 redis_version"
+  default     = false
+}
+
+variable "redis_auth_token" {
+  description = "The password used to access a password protected server. Can be specified only if transit_encryption_enabled = true"
+  default     = ""
+}
+
 variable "tags" {
   description = "Tags for redis nodes"
   default     = {}
