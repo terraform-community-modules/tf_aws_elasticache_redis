@@ -64,6 +64,8 @@ module "redis" {
 | redis\_port |  | string | `"6379"` | no |
 | redis\_snapshot\_retention\_limit | The number of days for which ElastiCache will retain automatic cache cluster snapshots before deleting them. For example, if you set SnapshotRetentionLimit to 5, then a snapshot that was taken today will be retained for 5 days before being deleted. If the value of SnapshotRetentionLimit is set to zero (0), backups are turned off. Please note that setting a snapshot_retention_limit is not supported on cache.t1.micro or cache.t2.* cache nodes | string | `"0"` | no |
 | redis\_snapshot\_window | The daily time range (in UTC) during which ElastiCache will begin taking a daily snapshot of your cache cluster. The minimum snapshot window is a 60 minute period | string | `"06:30-07:30"` | no |
+| redis\_snapshot\_name | The name of a snapshot from which to restore data into the new node group. | string | `""` | no |
+| redis\_snapshot\_arns | A single-element string list containing an Amazon Resource Name (ARN) of a Redis RDB snapshot file stored in Amazon S3. Example: `["arn:aws:s3:::my_bucket/snapshot1.rdb"]` | list | `[]` | no |
 | redis\_version | Redis version to use, defaults to 3.2.10 | string | `"3.2.10"` | no |
 | subnets | List of VPC Subnet IDs for the cache subnet group | list | n/a | yes |
 | tags | Tags for redis nodes | map | `{}` | no |

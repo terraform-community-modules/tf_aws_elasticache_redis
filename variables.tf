@@ -92,6 +92,17 @@ variable "redis_snapshot_retention_limit" {
   default     = 0
 }
 
+variable "redis_snapshot_name" {
+  description = "The name of a snapshot from which to restore data into the new node group."
+  default     = ""
+}
+
+variable "redis_snapshot_arns" {
+  type        = "list"
+  description = "A single-element string list containing an Amazon Resource Name (ARN) of a Redis RDB snapshot file stored in Amazon S3."
+  default     = []
+}
+
 variable "tags" {
   description = "Tags for redis nodes"
   default     = {}
