@@ -72,7 +72,7 @@ variable "vpc_id" {
 }
 
 variable "redis_parameters" {
-  type        = "list"
+  type        = list(object({name = string, value = string}))
   description = "additional parameters modifyed in parameter group"
   default     = []
 }
