@@ -22,8 +22,6 @@ This module
 - `apply_immediately` - Specifies whether any modifications are applied immediately, or during the next maintenance window. Defaults to false.
 - `allowed_cidr` - A list of Security Group ID's to allow access to. Defaults to localhost.
 - `allowed_security_groups` - A list of Security Group ID's to allow access to. Defaults to empty list.
-- `at_rest_encryption_enabled` - Specifies whether redis data is encrypted at rest. Defaults to false.
-- `transit_encryption_enabled` - Specifies whether redis data is encrypted in transit. Defaults to false.
 - `redis_failover` - Defaults to false. For failover to work, node type must larger than t2, and redis_cluster must be greater than 1.
 - `redis_node_type` - Instance type to use for creating the Redis cache clusters. Defaults to cache.m3.medium.
 - `redis_port` - Defaults to 6379.
