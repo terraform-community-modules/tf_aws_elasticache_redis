@@ -54,6 +54,7 @@ module "redis" {
 | allowed\_cidr | A list of Security Group ID's to allow access to. | list | `[ "127.0.0.1/32" ]` | no |
 | allowed\_security\_groups | A list of Security Group ID's to allow access to. | list | `[]` | no |
 | apply\_immediately | Specifies whether any modifications are applied immediately, or during the next maintenance window. Default is false. | string | `"false"` | no |
+| at\_rest\_encryption\_enabled | At rest encryption enabled | string | `"false"` | no |
 | env | env to deploy into, should typically dev/staging/prod | string | n/a | yes |
 | name | Name for the Redis replication group i.e. UserObject | string | n/a | yes |
 | redis\_clusters | Number of Redis cache clusters (nodes) to create | string | n/a | yes |
@@ -67,6 +68,7 @@ module "redis" {
 | redis\_version | Redis version to use, defaults to 3.2.10 | string | `"3.2.10"` | no |
 | subnets | List of VPC Subnet IDs for the cache subnet group | list | n/a | yes |
 | tags | Tags for redis nodes | map | `{}` | no |
+| transit\_encryption\_enabled | Transit encryption enabled | string | `"false"` | no |
 | vpc\_id | VPC ID | string | n/a | yes |
 
 ## Outputs
