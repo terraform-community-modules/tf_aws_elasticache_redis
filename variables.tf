@@ -92,6 +92,11 @@ variable "redis_snapshot_retention_limit" {
   default     = 0
 }
 
+variable "at_rest_encryption_enabled" {
+  description = "Whether to enable encryption at rest. "
+  default     = false
+}
+
 variable "tags" {
   description = "Tags for redis nodes"
   default     = {}

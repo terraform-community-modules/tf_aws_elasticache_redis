@@ -54,6 +54,7 @@ module "redis" {
 | allowed\_cidr | A list of Security Group ID's to allow access to. | list | `[ "127.0.0.1/32" ]` | no |
 | allowed\_security\_groups | A list of Security Group ID's to allow access to. | list | `[]` | no |
 | apply\_immediately | Specifies whether any modifications are applied immediately, or during the next maintenance window. Default is false. | string | `"false"` | no |
+| at\_rest\_encryption\_enabled | Whether to enable encryption at rest. | string | `false` | no |
 | env | env to deploy into, should typically dev/staging/prod | string | n/a | yes |
 | name | Name for the Redis replication group i.e. UserObject | string | n/a | yes |
 | redis\_clusters | Number of Redis cache clusters (nodes) to create | string | n/a | yes |
