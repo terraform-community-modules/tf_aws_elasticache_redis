@@ -20,13 +20,13 @@ variable "apply_immediately" {
 }
 
 variable "allowed_cidr" {
-  type        = "list"
+  type        = list(string)
   default     = ["127.0.0.1/32"]
   description = "A list of Security Group ID's to allow access to."
 }
 
 variable "allowed_security_groups" {
-  type        = "list"
+  type        = list(string)
   default     = []
   description = "A list of Security Group ID's to allow access to."
 }
@@ -57,7 +57,7 @@ variable "redis_port" {
 }
 
 variable "subnets" {
-  type        = "list"
+  type        = list(string)
   description = "List of VPC Subnet IDs for the cache subnet group"
 }
 
@@ -72,7 +72,7 @@ variable "vpc_id" {
 }
 
 variable "redis_parameters" {
-  type        = "list"
+  type        = list(object({ name = string, value = string }))
   description = "additional parameters modifyed in parameter group"
   default     = []
 }
@@ -93,6 +93,7 @@ variable "redis_snapshot_retention_limit" {
 }
 
 variable "tags" {
+  type        = map(string)
   description = "Tags for redis nodes"
   default     = {}
 }
