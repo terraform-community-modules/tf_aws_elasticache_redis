@@ -3,6 +3,9 @@ data "aws_vpc" "vpc" {
 }
 
 resource "random_id" "salt" {
+  keepers = {
+    redis_version = "${var.redis_version}"
+  }
   byte_length = 8
 }
 
