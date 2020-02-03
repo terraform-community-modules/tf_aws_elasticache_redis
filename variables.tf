@@ -51,6 +51,10 @@ variable "redis_failover" {
   type    = bool
   default = false
 }
+variable "auto_minor_version_upgrade" {
+  type    = bool
+  default = true
+}
 
 variable "redis_node_type" {
   description = "Instance type to use for creating the Redis cache clusters"
