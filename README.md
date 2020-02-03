@@ -55,7 +55,8 @@ module "redis" {
 | name | Name for the Redis replication group i.e. UserObject | string | n/a | yes |
 | redis\_clusters | Number of Redis cache clusters (nodes) to create | string | n/a | yes |
 | redis\_failover |  | bool | `"false"` | no |
-| redis\_maintenance\_window | Specifies the weekly time range for when maintenance on the cache cluster is performed. The format is ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). The minimum maintenance window is a 60 minute period | string | `"fri:08:00-fri:09:00"` | no |
+| redis\_failover |  | bool | `"false"` | no |
+| auto\_minor\_version\_upgrade | Specifies whether a minor engine upgrades will be applied automatically to the underlying Cache Cluster instances during the maintenance window  | bool | `"true"` | no |
 | redis\_node\_type | Instance type to use for creating the Redis cache clusters | string | `"cache.m3.medium"` | no |
 | redis\_parameters | additional parameters modifyed in parameter group | list(map(any)) | `[]` | no |
 | redis\_port |  | number | `"6379"` | no |
