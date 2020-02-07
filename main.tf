@@ -1,3 +1,7 @@
+data "aws_vpc" "vpc" {
+  id = var.vpc_id
+}
+
 resource "random_id" "salt" {
   byte_length = 8
 }
