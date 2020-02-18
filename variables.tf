@@ -104,6 +104,18 @@ variable "redis_snapshot_retention_limit" {
   default     = 0
 }
 
+variable "transit_encryption_enabled" {
+  type        = bool
+  default     = true
+  description = "Enable TLS"
+}
+
+variable "auth_token" {
+  type        = string
+  description = "token for password protecting redis, transit_encryption_enabled must`` be set to  `true`. Password must be longer than 16 chars"
+  default     = null
+}
+
 variable "tags" {
   description = "Tags for redis nodes"
   type        = map(string)
