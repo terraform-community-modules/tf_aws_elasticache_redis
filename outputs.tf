@@ -11,7 +11,7 @@ output "redis_subnet_group_name" {
 }
 
 output "id" {
-  value = "${aws_elasticache_replication_group.redis.id}"
+  value = "${local.redis_id}"
 }
 
 output "port" {
@@ -19,5 +19,5 @@ output "port" {
 }
 
 output "endpoint" {
-  value = "${aws_elasticache_replication_group.redis.primary_endpoint_address}"
+  value = "${local.redis_primary_endpoint_address}"
 }
