@@ -57,7 +57,7 @@ module "redis" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| allowed\_cidr | A list of Security Group ID's to allow access to. | list | `[ "127.0.0.1/32" ]` | no |
+| allowed\_cidr | A list of CIDR blocks to allow access from. | list | `[ "127.0.0.1/32" ]` | no |
 | allowed\_security\_groups | A list of Security Group ID's to allow access to. | list | `[]` | no |
 | apply\_immediately | Specifies whether any modifications are applied immediately, or during the next maintenance window. Default is false. | string | `"false"` | no |
 | at\_rest\_encryption\_enabled | Whether to enable encryption at rest | string | `false` | no |
