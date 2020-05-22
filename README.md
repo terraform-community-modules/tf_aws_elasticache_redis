@@ -11,7 +11,7 @@ This module
 
 Terraform 0.12. Pin module version to `~> v2.0`. Submit pull-requests to `master` branch.
 
-Terraform 0.11. Pin module version to `~> v1.0`.
+Terraform 0.11. Pin module version to `~> v1.0`. Submit pull-requests to `terraform011` branch.
 
 ## Usage
 
