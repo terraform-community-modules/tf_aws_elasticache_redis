@@ -109,3 +109,63 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
+
+variable "auto_minor_version_upgrade" {
+  description = "Specifies whether a minor engine upgrades will be applied automatically to the underlying Cache Cluster instances during the maintenance window"
+  type        = bool
+  default     = true
+}
+
+variable "availability_zones" {
+  description = "A list of EC2 availability zones in which the replication group's cache clusters will be created. The order of the availability zones in the list is not important"
+  type        = list(string)
+  default     = []
+}
+
+variable "at_rest_encryption_enabled" {
+  description = "Whether to enable encryption at rest"
+  type        = bool
+  default     = false
+}
+
+variable "kms_key_id" {
+  description = "The ARN of the key that you wish to use if encrypting at rest. If not supplied, uses service managed encryption. Can be specified only if at_rest_encryption_enabled = true"
+  type        = string
+  default     = ""
+}
+
+variable "transit_encryption_enabled" {
+  description = "Whether to enable encryption in transit. Requires 3.2.6 or >=4.0 redis_version"
+  type        = bool
+  default     = false
+}
+
+variable "auth_token" {
+  description = "The password used to access a password protected server. Can be specified only if transit_encryption_enabled = true. If specified must contain from 16 to 128 alphanumeric characters or symbols"
+  type        = string
+  default     = null
+}
+
+variable "security_group_names" {
+  description = "A list of cache security group names to associate with this replication group"
+  type        = list(string)
+  default     = []
+}
+
+variable "snapshot_arns" {
+  description = "A single-element string list containing an Amazon Resource Name (ARN) of a Redis RDB snapshot file stored in Amazon S3. Example: arn:aws:s3:::my_bucket/snapshot1.rdb"
+  type        = list(string)
+  default     = []
+}
+
+variable "snapshot_name" {
+  description = " The name of a snapshot from which to restore data into the new node group. Changing the snapshot_name forces a new resource"
+  type        = string
+  default     = ""
+}
+
+variable "notification_topic_arn" {
+  description = "An Amazon Resource Name (ARN) of an SNS topic to send ElastiCache notifications to. Example: arn:aws:sns:us-east-1:012345678999:my_sns_topic"
+  type        = string
+  default     = ""
+}
