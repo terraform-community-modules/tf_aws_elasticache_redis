@@ -17,7 +17,7 @@ resource "random_id" "salt" {
 resource "aws_elasticache_replication_group" "redis" {
   count = "${length(var.auth_token) > 0 && var.transit_encryption_enabled ? 0 : 1}"
 
-  replication_group_id          = "${format("%.20s","${var.name}-${var.env}")}"
+  replication_group_id          = "${format("%.20s", "${var.name}-${var.env}")}"
   replication_group_description = "Terraform-managed ElastiCache replication group for ${var.name}-${var.env}-${local.vpc_name}"
   number_cache_clusters         = "${var.redis_clusters}"
   node_type                     = "${var.redis_node_type}"
@@ -47,7 +47,7 @@ resource "aws_elasticache_replication_group" "redis" {
 resource "aws_elasticache_replication_group" "redis_auth" {
   count = "${length(var.auth_token) > 0 && var.transit_encryption_enabled ? 1 : 0}"
 
-  replication_group_id          = "${format("%.20s","${var.name}-${var.env}")}"
+  replication_group_id          = "${format("%.20s", "${var.name}-${var.env}")}"
   replication_group_description = "Terraform-managed ElastiCache replication group for ${var.name}-${var.env}-${local.vpc_name}"
   number_cache_clusters         = "${var.redis_clusters}"
   node_type                     = "${var.redis_node_type}"
@@ -86,7 +86,7 @@ resource "aws_elasticache_parameter_group" "redis_parameter_group" {
   description = "Terraform-managed ElastiCache parameter group for ${var.name}-${var.env}-${local.vpc_name}"
 
   # Strip the patch version from redis_version var
-  family    = "redis${replace(var.redis_version, "/\\.[\\d]+$/","")}"
+  family    = "redis${replace(var.redis_version, "/\\.[\\d]+$/", "")}"
   parameter = "${var.redis_parameters}"
 
   lifecycle {
