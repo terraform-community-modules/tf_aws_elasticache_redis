@@ -17,8 +17,7 @@ Terraform 0.11. Pin module version to `~> v1.0`. Submit pull-requests to `terraf
 
 ```hcl
 module "redis" {
-  source  = "github.com/terraform-community-modules/tf_aws_elasticache_redis.git"
-  version = "~> 2.0"
+  source  = "github.com/terraform-community-modules/tf_aws_elasticache_redis.git?ref=v2.2.0"
 
   env            = "dev"
   name           = "thtest"
