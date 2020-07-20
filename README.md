@@ -17,8 +17,7 @@ Terraform 0.11. Pin module version to `~> v1.0`. Submit pull-requests to `terraf
 
 ```hcl
 module "redis" {
-  source  = "github.com/terraform-community-modules/tf_aws_elasticache_redis.git"
-  version = "~> 2.0"
+  source  = "github.com/terraform-community-modules/tf_aws_elasticache_redis.git?ref=v2.2.0"
 
   env            = "dev"
   name           = "thtest"
@@ -56,7 +55,7 @@ No requirements.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| allowed\_cidr | A list of Security Group ID's to allow access to. | `list(string)` | <pre>[<br>  "127.0.0.1/32"<br>]</pre> | no |
+| allowed\_cidr | A list CIDRs to allow access to. | `list(string)` | <pre>[<br>  "127.0.0.1/32"<br>]</pre> | no |
 | allowed\_security\_groups | A list of Security Group ID's to allow access to. | `list(string)` | `[]` | no |
 | apply\_immediately | Specifies whether any modifications are applied immediately, or during the next maintenance window. Default is false. | `bool` | `false` | no |
 | at\_rest\_encryption\_enabled | Whether to enable encryption at rest | `bool` | `false` | no |
