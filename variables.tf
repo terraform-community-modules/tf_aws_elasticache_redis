@@ -52,6 +52,11 @@ variable "redis_failover" {
   default = false
 }
 
+variable "multi_az_enabled" {
+  type    = bool
+  default = false
+}
+
 variable "redis_node_type" {
   description = "Instance type to use for creating the Redis cache clusters"
   type        = string
