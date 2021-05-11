@@ -39,7 +39,7 @@ resource "aws_elasticache_replication_group" "redis" {
   notification_topic_arn        = var.notification_topic_arn
   snapshot_window               = var.redis_snapshot_window
   snapshot_retention_limit      = var.redis_snapshot_retention_limit
-  tags                          = merge(map("Name", format("tf-elasticache-%s-%s", var.name, local.vpc_name)), var.tags)
+  tags                          = merge(tomap({"Name" = format("tf-elasticache-%s-%s", var.name, local.vpc_name)}), var.tags)
 }
 
 resource "aws_elasticache_parameter_group" "redis_parameter_group" {
