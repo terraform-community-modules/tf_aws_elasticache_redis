@@ -3,7 +3,7 @@ data "aws_vpc" "vpc" {
 }
 
 locals {
-  vpc_name = lookup(data.aws_vpc.vpc.tags, "Name", var.vpc_id)
+  vpc_name = replace(lookup(data.aws_vpc.vpc.tags, "Name", var.vpc_id), ".", "-")
 }
 
 resource "random_id" "salt" {
