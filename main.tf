@@ -14,7 +14,7 @@ resource "random_id" "salt" {
 }
 
 resource "aws_elasticache_replication_group" "redis" {
-  replication_group_id          = format("%.20s", "${var.name}-${var.env}")
+  replication_group_id          = var.elasticache_replication_group_id == "" ? format("%.20s", "${var.name}-${var.env}") : var.elasticache_replication_group_id
   replication_group_description = "Terraform-managed ElastiCache replication group for ${var.name}-${var.env}-${local.vpc_name}"
   number_cache_clusters         = var.redis_clusters
   node_type                     = var.redis_node_type
@@ -44,7 +44,7 @@ resource "aws_elasticache_replication_group" "redis" {
 }
 
 resource "aws_elasticache_parameter_group" "redis_parameter_group" {
-  name = replace(format("%.255s", lower(replace("tf-redis-${var.name}-${var.env}-${local.vpc_name}-${random_id.salt.hex}", "_", "-"))), "/\\s/", "-")
+  name = var.elasticache_parameter_group_name == "" ? replace(format("%.255s", lower(replace("tf-redis-${var.name}-${var.env}-${local.vpc_name}-${random_id.salt.hex}", "_", "-"))), "/\\s/", "-") : var.elasticache_parameter_group_name
 
   description = "Terraform-managed ElastiCache parameter group for ${var.name}-${var.env}-${local.vpc_name}"
 
@@ -64,6 +64,6 @@ resource "aws_elasticache_parameter_group" "redis_parameter_group" {
 }
 
 resource "aws_elasticache_subnet_group" "redis_subnet_group" {
-  name       = replace(format("%.255s", lower(replace("tf-redis-${var.name}-${var.env}-${local.vpc_name}", "_", "-"))), "/\\s/", "-")
+  name       = var.elasticache_subnet_group_name == "" ? replace(format("%.255s", lower(replace("tf-redis-${var.name}-${var.env}-${local.vpc_name}", "_", "-"))), "/\\s/", "-") : var.elasticache_subnet_group_name
   subnet_ids = var.subnets
 }
