@@ -1,5 +1,6 @@
+
 resource "aws_security_group" "redis_security_group" {
-  name        = format("%.255s", "tf-sg-ec-${var.name}-${var.env}-${local.vpc_name}")
+  name        = var.elasticache_security_group_name == "" ? format("%.255s", "tf-sg-ec-${var.name}-${var.env}-${local.vpc_name}") : var.elasticache_security_group_name
   description = "Terraform-managed ElastiCache security group for ${var.name}-${var.env}-${local.vpc_name}"
   vpc_id      = data.aws_vpc.vpc.id
 

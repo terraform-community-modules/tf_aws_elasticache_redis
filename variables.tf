@@ -174,3 +174,27 @@ variable "notification_topic_arn" {
   type        = string
   default     = ""
 }
+
+variable "elasticache_replication_group_id" {
+  description = "Name of the ElastiCache replication group"
+  type        = string
+  default     = ""
+}
+
+variable "elasticache_parameter_group_name" {
+  description = "Name of the ElastiCache parameter group"
+  type        = string
+  default     = ""
+}
+
+variable "elasticache_subnet_group_name" {
+  description = "Name of the ElastiCache subnet group"
+  type        = string
+  default     = ""
+}
+
+variable "elasticache_security_group_name" {
+  description = "Name of the ElastiCache security group"
+  type        = string
+  default     = ""
+}
