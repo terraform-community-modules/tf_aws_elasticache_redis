@@ -54,6 +54,12 @@ variable "name" {
   type        = string
 }
 
+variable "format_length" {
+  description = "Length formatting for redis instance name"
+  type        = string
+  default     = "%.40s"
+}
+
 variable "redis_clusters" {
   description = "Number of Redis cache clusters (nodes) to create"
   type        = string

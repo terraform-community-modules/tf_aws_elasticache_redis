@@ -7,7 +7,7 @@ resource "random_id" "salt" {
 }
 
 resource "aws_elasticache_replication_group" "redis" {
-  replication_group_id          = format("%.40s", "${var.name}-${var.env}")
+  replication_group_id          = format("${var.format_length}", "${var.name}-${var.env}")
   description                   = "Terraform-managed ElastiCache replication group for ${var.name}-${var.env}"
   num_cache_clusters            = var.redis_clusters
   node_type                     = var.redis_node_type
